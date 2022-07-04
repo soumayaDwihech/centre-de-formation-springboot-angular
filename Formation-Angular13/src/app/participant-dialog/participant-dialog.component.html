@@ -1,0 +1,80 @@
+<!-- dialog-box.component.html -->
+<h1 mat-dialog-title>Row Action :: <strong>{{action}}</strong></h1>
+<div mat-dialog-content>
+<form [formGroup]="local_form">
+
+    <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
+        <input placeholder="{{action}} nom" matInput formControlName="nom">
+    </mat-form-field>
+    
+    
+    <mat-form-field *ngIf="action != 'Delete'; ">
+        <input placeholder="{{action}} prenom" matInput formControlName="prenom">
+  </mat-form-field>
+  
+  <mat-form-field *ngIf="action != 'Delete'; ">
+      <input placeholder="{{action}} email" matInput formControlName="email">
+    </mat-form-field>
+    
+    <mat-form-field *ngIf="action != 'Delete'; ">
+        <input placeholder="{{action}} tel" matInput formControlName="tel">
+    </mat-form-field>
+    
+    
+    
+    <mat-form-field *ngIf="action != 'Delete'; ">
+        <mat-label>Choose a Type</mat-label>
+    <mat-select  formControlName="type">
+        <mat-option value="Participant_National">Participant_National</mat-option>
+        <mat-option value="Participant_International">Participant_International</mat-option>
+    </mat-select>
+</mat-form-field>
+
+  <mat-form-field *ngIf="action != 'Delete'; ">
+      <mat-label>Choose an option</mat-label>
+      <mat-select  formControlName="pays" [disabled]="national">
+          <mat-option *ngFor="let p of pays" [value]="p.id">
+              {{p.nom}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    
+    
+    <mat-form-field *ngIf="action != 'Delete'; ">
+        <mat-label>Choose an option</mat-label>
+        <mat-select  formControlName="profil">
+            <mat-option *ngFor="let p of profil" [value]="p.id">
+                {{p.libelle}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field *ngIf="action != 'Delete'; ">
+        <mat-label>Choose an option</mat-label>
+        <mat-select  formControlName="organisme" [disabled]="!national">
+            <mat-option *ngFor="let p of origanismes" [value]="p.id">
+                {{p.libelle}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    
+    
+</form>
+    
+    
+
+  
+
+
+
+
+
+  <ng-template #elseTemplate>
+    Sure to delete <b>{{local_data.email}}</b>?
+  </ng-template>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="doAction()">{{action}}</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>

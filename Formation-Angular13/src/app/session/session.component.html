@@ -1,0 +1,84 @@
+<!-- app.component.html -->
+<div class="container text-center">
+
+    <button mat-button (click)="openDialog('Add',{})" mat-flat-button color="primary">Add Row</button>
+  
+    <table mat-table [dataSource]="dataSource" #mytable class="my-table mat-elevation-z8">
+  
+      <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+      <!-- Id Column -->
+      <ng-container matColumnDef="titre">
+        <th mat-header-cell *matHeaderCellDef> titre. </th>
+        <td mat-cell *matCellDef="let element"><a [routerLink]="['/formation', element.id]">{{element.titre}}  </a> </td>
+      </ng-container>
+
+      <!-- Id Column -->
+      <ng-container matColumnDef="date_debut">
+        <th mat-header-cell *matHeaderCellDef> date_debut. </th>
+        <td mat-cell *matCellDef="let element"> {{element.date_debut}} </td>
+      </ng-container>
+
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="date_fin">
+          <th mat-header-cell *matHeaderCellDef> date_fin </th>
+          <td mat-cell *matCellDef="let element"> {{element.date_fin}} </td>
+        </ng-container>
+
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="nb_participant">
+          <th mat-header-cell *matHeaderCellDef> nb_participant </th>
+          <td mat-cell *matCellDef="let element"> {{element.nb_participant}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="formateur">
+          <th mat-header-cell *matHeaderCellDef> formateur </th>
+          <td mat-cell *matCellDef="let element"> {{element.formateur.nom}} {{element.formateur.pernom}}</td>
+        </ng-container>
+
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="organisme">
+          <th mat-header-cell *matHeaderCellDef> organisme </th>
+          <td mat-cell *matCellDef="let element"> {{element.organisme.libelle}} </td>
+        </ng-container>
+        <!-- Name Column -->
+
+
+        <ng-container matColumnDef="lieu">
+          <th mat-header-cell *matHeaderCellDef> lieu </th>
+          <td mat-cell *matCellDef="let element"> {{element.lieu}} </td>
+        </ng-container>
+
+
+
+  
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element" class="action-link"> 
+          <a (click)="openDialog('Update',element)">Edit</a> | 
+          <a (click)="openDialog('Delete',element)">Delete</a>  
+        </td>
+      </ng-container>
+  
+  
+      <!-- Action Column -->
+      <ng-container matColumnDef="participants">
+        <th mat-header-cell *matHeaderCellDef> participants </th>
+        <td mat-cell *matCellDef="let element" class="action-link"> 
+          <button mat-button (click)="openDetails( element.id,element.nb_participant )">Open list</button>
+        </td>
+      </ng-container>
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+  </div>

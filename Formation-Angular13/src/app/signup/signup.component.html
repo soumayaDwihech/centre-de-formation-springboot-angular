@@ -1,0 +1,50 @@
+<section id="background">
+</section>
+
+ <div class="main-content d-flex min-vh-100">
+  <div class="container-fluid my-auto">
+    <div class="center">
+      <div class="swing">
+      <img src="../../assets/img/logo.png" class="img-log" width="150" height="150"/>
+    </div>
+    </div>
+    <div class="row justify-content-center ">
+      <div class="col-md-4">
+      
+        <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+          <mat-card class="box">
+            <mat-card-header>
+              <mat-card-title>Register</mat-card-title>
+            </mat-card-header>
+            <form class="example-form" [formGroup]="signUpForm">
+              <mat-card-content>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Username" formControlName="username">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Email"  formControlName="email">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Password"  formControlName="password" type="password">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Choose a role...</mat-label>
+                  <mat-select multiple  formControlName="role">
+                    <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </mat-card-content>
+              <button mat-stroked-button color="accent" class="btn-block" type="submit" [disabled]="!signUpForm.valid" (click)="submitRegister()">Register</button>
+            </form>
+          </mat-card>
+        </div>
+
+
+
+      </div>
+
+    </div>
+  </div>
+ </div>
+

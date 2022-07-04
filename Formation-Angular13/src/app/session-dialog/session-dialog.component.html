@@ -1,0 +1,57 @@
+<!-- dialog-box.component.html -->
+<h1 mat-dialog-title>Row Action :: <strong>{{action}}</strong></h1>
+<div mat-dialog-content>
+
+  <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
+    <input placeholder="{{action}} date_debut" matInput [(ngModel)]="local_data.date_debut">
+  </mat-form-field>
+
+
+  <mat-form-field *ngIf="action != 'Delete'; ">
+    <input  placeholder="{{action}} date_fin" matInput [(ngModel)]="local_data.date_fin">
+  </mat-form-field>
+
+
+
+
+  <mat-form-field *ngIf="action != 'Delete'; ">
+    <input type="number" placeholder="{{action}} nb_participant" matInput [(ngModel)]="local_data.nb_participant">
+  </mat-form-field>
+
+
+
+  <mat-form-field *ngIf="action != 'Delete'; ">
+    <mat-label>Choose an option</mat-label>
+    <mat-select  [(ngModel)]="local_data?.organisme.id">
+      <mat-option *ngFor="let organisme of organismes" [value]="organisme.id">
+        {{organisme.libelle}}
+      </mat-option>
+    </mat-select>
+</mat-form-field>
+
+<mat-form-field *ngIf="action != 'Delete'; ">
+  <mat-label>Choose an option</mat-label>
+  <mat-select  [(ngModel)]="local_data?.formateur.id">
+    <mat-option *ngFor="let formateur of formateurs" [value]="formateur.id">
+      {{formateur.nom}} {{formateur.pernom}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+  
+
+<mat-form-field *ngIf="action != 'Delete'; ">
+  <input  placeholder="{{action}} lieu" matInput [(ngModel)]="local_data.lieu">
+</mat-form-field>
+
+
+
+
+  <ng-template #elseTemplate>
+    Sure to delete <b>{{local_data.titre}}</b>?
+  </ng-template>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="doAction()">{{action}}</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>

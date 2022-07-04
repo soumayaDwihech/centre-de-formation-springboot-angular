@@ -1,0 +1,19 @@
+<h1 mat-dialog-title> Options selected: {{participantsList.selectedOptions.selected.length}}/{{data.nb_participant}}</h1>
+<div mat-dialog-content>
+
+<mat-selection-list #participantsList [(ngModel)]="selectedParticipants">
+    <mat-list-option *ngFor="let participant of participants" [selected]="participant.checked" [value]="{id: participant.id}">
+      {{participant.nom}} {{participant.prenom}}
+    </mat-list-option>
+  </mat-selection-list>
+
+
+  
+
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+    <button mat-raised-button color="primary" (click)="save()">Save</button>
+
+  </div>

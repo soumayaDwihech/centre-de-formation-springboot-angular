@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+    <span>Formation</span>
+    <ul>
+        <li   style="display: block; font-size: x-small;" *ngFor="let role of roles">{{role}}</li>
+    </ul>
+     <div class="spacer"></div>
+     <div > 
+       <a mat-button routerLink="/formateurs">Formateurs</a>
+       <a mat-button routerLink="/formations">Formations</a>
+       <a mat-button routerLink="/participants">Participants</a>
+
+       <a *ngIf="logged_in == 'true'  else elseBlock" mat-button routerLink="/login" (click)="logout()">Logout</a>  
+       
+       <ng-template #elseBlock><a  mat-button routerLink="/login">login </a></ng-template>
+      </div>
+
+
+
+   </mat-toolbar>
